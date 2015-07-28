@@ -1,0 +1,38 @@
+\chapter{Introduction}
+\label{cap:Introductions}
+
+Accurate global localization is a necessary capability of autonomous vehicles intended to operate in large areas. In many cases, the context of operation does not allow the use of GPS, or degraded GPS estimates makes its direct use inappropriate (e.g. urban canyons, hostile territories in war scenarios, underground mines, etc.). Alternative localization mechanisms, such as those based on SLAM \cite{42montemerlo2007fastslam, 08weingarten2005ekf, 37auat2011optimized, 10thrun2006graph}, require the vehicle to “close the loop” (revisit places) for maintaining the required accuracy, what, in certain cases, is not possible because the vehicle’s plans do not actually involve revisiting places. Approaches based on detailed a priori maps (\cite{Thrun00j, Levinson-RSS-07, LevinsonT10, ranganathan2013light}) are also possible, but require building its map in advance (usually by visiting and learning the context of operation).
+
+One viable alternative can be implemented using information publically available in the form of road maps and on-board sensing capabilities that comes today as standard in most cars. These sensing capabilities allow easy implementation of dead-reckoning (at least low quality dead-reckoning) and of some level of environment modelling.
+
+Based on those resources, a Bayesian estimation process can be performed in order to estimate the global pose (position and heading) of the platform. In the estimation process, the kinematic model of the vehicle can be used as a Process Model. The road map is used to define the main observation model (i.e. a likelihood function), based on the assumption that the vehicle is usually located on a known road. The additional sensing capabilities can offer extra observations for improving the convergence of the estimation process (what is the case presented in this work).
+
+As the generated Probability Density Function (PDF) for describing the estimates (2D position or 3DoF Pose) is usually non Gaussian, the Bayesian estimation process is usually implemented through approaches such as Particle Filter (PF) or Sum of Gaussians (SoG). An approach for implementing such an estimation process was introduced  in \cite{guivant2007global} and \cite{guivant2010robust}. In that approach, an extended likelihood function was defined to improve the performance of the PF estimation process. The approach was adequate for treating cases where the road map was only partially known (e.g. incomplete). However, it was noted that the quality of the estimates could be degraded in certain operation conditions. Those conditions occur when the vehicle travels for large distances throughout almost rectilinear roads, i.e. when it does not turn at any intersection for long distances. That behavior could affect the observability of the estimation process, increasing the uncertainty on the longitudinal component of the position estimates. 
+
+Those situations suggest the need of using additional observations that could provide information related to the longitudinal component of the vehicle position. Particular cases where such observations are possible occur in the vicinity of known road intersections, even when the vehicle does not turn and keep going straight. From the detection of such cases, an associated likelihood function could be generated and used for updating the estimation process. In this paper, a new class of observation based on the detection of intersections in road maps is defined, and the verified improvements in our previous algorithm \cite{guivant2007global} are shown via experiments with an autonomous car.
+This work is organized as follows. After this introduction, in Section II, we briefly present the related work. In Section III, we describe our Localization System. Thereafter, in Section IV, we present our experimental setup and our experimental methodology. Section V presents the results, and our conclusions follow in Section VI.
+
+
+Mapping large-scale environments is still a challenging problem (\cite{60kummerle2009autonomous,61sunderhauf2012switchable,68mcdonald2013real}), especially in environments with loop closures separated by long distances. It is to be noted that related works on the topic (as will be shown in the following Section) are typically only focused in one specific type of environment, meaning: outdoors, indoors, urban or agriculture. They do not face the problem of environment transitions (from indoors to outdoors, from urban to highly arborized, among other possible combinations). The latter is the main contribution of this article, since we implement and evaluate a GraphSLAM-based algorithm for mapping in the following complex field scenarios: downtown of an urban region, arborized university campus and their corresponding transitions, using an autonomous car. The map built by the system is used for localization and for autonomous navigation as the vehicle drives through the environments. A low level obstacle detection approach is also implemented in order to evaluate collision possibilities.
+
+Additionally, in this work we also propose a new approach for estimation and integration of sensorial biases present in odometry data; the description of an end-to-end Large-Scale Mapping System based on GraphSLAM. This solution integrates data from odometry, IMU, GPS and Velodyne in a probabilistic path estimator; a new description of a Velodyne-based 2D grid-mapping algorithm, which was already presented by other authors \cite{22montemerlo2008junior} with a different description approach. In addition, we empirically show that the mapping system is able to build high quality maps of large-scale environments, including in presence of transitions between peripheral highly arborized areas and urban downtown areas.
+
+The Large-scale Environment Mapping System (LEMS) was evaluated using the robotic vehicle (see Figure ~\ref{Fig::FIGURE01}) named IARA (acronym to Intelligent Autonomous Robotic Automobile), a robotized car from \emph{Universidade Federal do Esp\'irito Santo}, Brazil, in three environments with different scales and characteristics. The LEMS was successfully used to map all of them, with precise loop closures and without map drifts.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale = 0.1]{FIGURE01}
+    \caption{Robotic platform named IARA (acronym to Intelligent Autonomous Robotic Automobile).}
+    \label{Fig::FIGURE01}
+\end{figure}
+
+Localization and tracking of vehicles or robots in GPS-denied environments - both indoors and outdoors - is still challenging, specially when precise motion is required. A common solution is the use of Simultaneous Localization And Mapping (SLAM) algorithms.  However, such algorithms require the need of a robot initialization step. For instance, in an indoor environment, localizing a mobile robot using SLAM will depend on the place where it is initialized, i.e. where it wakes up.  This methodology is inefficient for some applications because the positions of the objects in the world will change depending on the initialization position.  A common solution to overcome this limitation is the construction of a map of the environment~\cite{Thrun00j,moreno2007evolutionary,bashiri2012hybrid}. For mapped environments, during the initialization step, the robot localizes itself according to the map, thus preserving the position of the objects in the world. Unfortunately, this additional step increases the 
+computational cost when the map grows. Furthermore, if the map has some ambiguity, finding the robot pose may take a few minutes.
+
+
+
+\section{Motivation}
+
+\section{Contribution}
+
+\section{Structure}

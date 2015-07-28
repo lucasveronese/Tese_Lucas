@@ -1,0 +1,44 @@
+\chapter{Localization Methods}
+
+\section{Introduction}
+
+Localization and tracking of vehicles is still an important issue in GPS denied environments (both indoors and outdoors), where accurate motion is required. In this work, a localization system based on the random disposition of LiDAR sensors (which share partially common field of view) and on the use of the Hausdorff distance is addressed. The proposed system uses the Hausdorff distance to estimate both the position of the LiDAR sensors and the pose of the vehicle as it drives within the environment. Our approach is not restricted to the number of LiDAR sensors (the estimation procedure is asynchronous), the number of vehicles (it is a multi-dimensional approach) or the nature of the environment. However, it is implemented in open spaces, limited by the range of the LiDAR sensors and the geometry of the vehicle. An empirical analysis of the presented approach is also included here, showing that the error in the localization estimation remains bounded in approximately \emph{50 cm}. 
+%Real-time experimentation as validation of the proposed localization and tracking techniques as well as the pros and cons of our proposal are also shown in this work.
+
+\section{Bayesian Localization}
+
+Bayesian methods \cite{Arulampalam02atutorial} allow adequate processing for dynamic state estimation problems. Bayesian approaches aim at synthesizing the probability density function (PDF) of the state vector based on all the available information. Consequently, vehicle global  localization can be treated as a Bayesian estimation problem, where the estimated variable is the pose of the vehicle. If the vehicle's pose (in the case of 2D localization) at time $k$ is expressed through the 3 DoF vector 
+
+\begin{equation}
+\label{Eq::ch2-1}
+X_k = [x_k, y_k, \theta_k]
+\end{equation}
+
+then the localization problem implies the recursive synthesis of the PDF
+
+\begin{equation}
+\label{Eq::ch2-2}
+p_{X_k, | z^{\left( k\right)}} = \left( X_k, | z^{\left( k\right)}\right) 
+\end{equation}
+
+where $z^{\left( k\right)}$ represents the sequence of all the available observations until time $k$.
+
+If the posterior $p\left( X_{k-1} | z^{\left( k-1\right)}\right)$ $\left( *\right)$ at time $k-1$ is available, then the prior at time $k$ (due to a prediction step) is:
+
+\begin{equation}
+\label{Eq::ch2-3}
+p\left( X_{k} | z^{\left( k-1\right)}\right) = \int  p\left( X_{k}, X_{k-1}\right) \cdotp p\left( X_{k} | z^{\left( k-1\right)}\right) \cdotp dX_{k-1}   
+\end{equation}
+
+where the conditional PDF $p\left( X_{k}, X_{k-1}\right)$ is provided by the process model of the system (in this case the kinematic model of the vehicle).
+
+At time $k$ a set of measurements,  $z^{\left( k\right)}$, become available, consequently allowing the synthesis of a posterior that is obtained through a Bayesian update stage,
+
+\begin{equation}
+\label{Eq::ch2-4}
+p\left( X_{k} | z^{\left( k\right)}\right) \propto p\left( X_{k} | z^{\left( k-1\right)}\right) \cdotp p\left( z^{\left( k\right)} | X_{k}\right)
+\end{equation}
+
+where $p\left( z^{\left( k\right)} | X_{k}\right)$ is the likelihood function associated to observation $z=z^{\left( k\right)}$.
+
+For nonlinear non-Gaussian estimation problems, there are usually no analytic expressions for the estimated PDFs. A common approach for treating these problems is the Particle Filter (PF), that is able to estimate non-Gaussian and potentially multimodal PDFs. The generated PDF is represented through a set of samples (particles) with associated weights, and the estimates are computed based on these samples and weights. Details about PF can be found in \cite{Thrun:2005:PR:1121596, Thrun00j}

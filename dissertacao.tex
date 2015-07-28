@@ -1,0 +1,172 @@
+%
+%--- Este documento estrutura o projeto do ALUNO-1
+%
+
+%\input{/home/elias/work/defs/defs}
+\documentclass[12pt,brazil,english]{abnt}
+%\documentclass[12pt,brazil]{abnt}
+\usepackage{babel,graphicx,verbatim,abnt-alf,enumerate,lineno}
+\usepackage{pstricks,pst-node}
+%\usepackage[latin1]{inputenc}
+%\usepackage{apalike}
+\usepackage{setspace}
+\usepackage{float}
+%\usepackage{subfig}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{multirow}
+\usepackage{color}
+
+\usepackage[brazil]{varioref}
+
+%\usepackage{pdflatex}
+%\usepackage[pdftex]{graphicx}
+
+\usepackage[T1]{fontenc}
+\usepackage{psfrag}
+\usepackage{graphicx}
+
+%\usepackage[a4paper,top=30mm,bottom=30mm,left=30mm,right=25mm]{geometry}
+%\geometry{headheight=7mm,headsep=3mm,footskip=7mm}
+%\setlength{\parskip}{2ex plus0.5ex minus0.5ex}
+% Espaçamento 1.5, requerido pelo PPGEE. O valor de \baselinestretch
+% foi extraido do ``LaTeX Companion'', pp. 52-53.
+%\renewcommand{\baselinestretch}{1.21}
+
+\usepackage{epic,eepic}
+\usepackage{amssymb,calc,url,indentfirst,enumerate,theorem,moreverb}
+\usepackage{alltt,fancyhdr,subfig,tabularx}
+
+\begin{document}
+%\pagewiselinenumbers %--- Set line numbering 
+
+\pagestyle{empty}
+
+%\begin{abstract}
+%
+% O resumo deve conceituar o projeto com seus objetivos e justificativas
+% ou evidências de interesse.
+%
+%\input{abstract-pt}
+%\end{abstract}
+
+\DeclareGraphicsRule{.eps.gz}{eps}{.eps.bb}{`gunzip -c #1}
+\graphicspath{{figuras/}}
+
+\autor{Lucas de Paula Veronese}
+
+
+\titulo{Autonomous Cars Localization in GPS-Denied Urban Environments using Road and Satellite Maps}
+
+
+\orientador{Prof. Dr. Alberto Ferreira De Souza}
+
+
+%\coorientador{<Nome do Co-orientador (caso exista)>}
+
+
+\comentario{Tese apresentada ao Programa de Pós-Graduação em Informática do Centro Tecnológico da Universidade Federal do Espírito Santo, como requisito parcial para obtenção do Grau de Doutor em Ciência da Computação.}
+
+
+\instituicao{Departamento de Informática \par Centro Tecnológico\par Universidade
+Federal do Espírito Santo}
+
+
+\local{Vitória - ES, Brasil}
+
+
+\data{}
+
+\capa
+
+\folhaderosto
+
+\begin{folhadeaprovacao}
+%Tese apresentada ao Programa de Pós-Graduação sob o título \textit{``\ABNTtitulodata''},
+%defendida por \ABNTautordata~e aprovada em \ABNTdatadata, em Vitória,
+%Estado do Espírito Santo, pela banca examinadora constituída pelos
+%professores: 
+\setlength{\ABNTsignthickness}{0.4pt}
+
+\assinatura{Prof. Dr. Alberto Ferreira De Souza\\ Orientador} \assinatura{Prof. Dr. Edilson de Aguiar \\ Co-orientador} \assinatura{Prof. Dr. Thiago Oliveira dos Santos\\ Universidade Federal do Espírito Santo} \assinatura{Prof. Dr. Claudine Badue\\ Universidade Federal do Espírito Santo} \assinatura{Prof. Dr. Fernando A. Auat Cheein\\ Universidad Técnica Federico Santa María}  \assinatura{Prof. Dr. José Guivant\\ University of New South Wales}
+\end{folhadeaprovacao}
+%\begin{resumo}
+%Escreva aqui o texto do seu resumo.
+%\end{resumo}
+
+\chapter*{Resumo}
+
+resumo
+
+\begin{abstract}
+Write here the English version of your {}``Resumo''.
+\end{abstract}
+
+
+\chapter*{Dedicatory}
+
+Dedico este trabalho a ...
+
+
+\chapter*{Acknowledgment}
+
+Agradeço a ...
+
+
+
+\tableofcontents{}\listoffigures
+
+\listoftables
+
+
+\input{introduction}
+
+\input{relatedwork}
+
+\input{chapter1}
+
+%\input{chapter2}
+
+%\input{chapter3}
+
+\input{chapter4}
+
+\input{methodology}
+
+\input{results}
+
+\chapter{Conclusion e Future Works\label{cap:conclusao}}
+
+% \vfill{}
+% \begin{flushright}{}``\emph{Nada se cria, nada se perde, tudo se
+% transforma.}''\\
+% {\small Lavousier}\end{flushright}{\small \par}
+% \vfill{}
+
+% Neste capítulo é apresentado as conclusões e alguns trabalhos futuros
+% ...
+\newpage
+
+
+\section{Conclusion}
+
+{\bf Alguns itens interessantes para a conclusão de um projeto de graduação}
+
+
+\section{Future Works}
+
+\appendix
+
+
+%\input{mapping}
+
+
+\bibliographystyle{abnt-alf}
+\bibliography{dissertacao}
+
+
+
+
+\end{document}
+
+\end{document}
